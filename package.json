@@ -1,0 +1,22 @@
+{
+  "name": "g.o.a.t-of-goats",
+  "version": "1.0.0",
+  "description": "Exactly",
+  "main": "index.js",
+  "dependencies": {
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PatrickWalker/g.o.a.t-of-goats.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PatrickWalker/g.o.a.t-of-goats/issues"
+  },
+  "homepage": "https://github.com/PatrickWalker/g.o.a.t-of-goats#readme"
+}
