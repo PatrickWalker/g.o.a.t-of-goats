@@ -36,9 +36,12 @@ export default {
     uploadYoGoat () {
       console.log('Thanks for Trying mate. I appreciate yall : ')
       // Check if Title is empty string if so reject
-
+      if (this.$data.Title === '') {
+        alert('You need a Title. We said Please!')
+        return
+      }
       // Upload the file
-
+      this.upload(this.$data.stagedFiles[0])
       // Save the image title and URL in the DB
 
       // This will eventually also include the Uploader name etc as well
@@ -47,9 +50,9 @@ export default {
     stageFiles (fileList) {
       Array.from(Array(fileList.length).keys()).map(x => {
         // this.upload()
-        //at the minute they could stage a number of files. I think we should disable the form
+        // at the minute they could stage a number of files. I think we should disable the form
         this.stagedFiles.push(fileList[x])
-        this.$ref.goatFile.enab
+        this.$data.uploadDisabled = true
       })
     },
     upload (file) {
