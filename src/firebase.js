@@ -11,3 +11,4 @@ const fbconfig = {
 const firebaseApp = Firebase.initializeApp(fbconfig)
 
 export const storage = firebaseApp.storage()
+export const db = firebaseApp.database()
