@@ -1,5 +1,6 @@
 {
   "projects": {
-    "goat": "gdgbelfast-cb650"
+    "goat": "gdgbelfast-cb650",
+    "default": "gdgbelfast-cb650"
   }
 }
