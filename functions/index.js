@@ -29,7 +29,7 @@ exports.cleanupUser = functions.auth.user().onDelete(event => {
     })
 })
 
-exports.syncDBStorage = functions.storage.object.onChange(event => {
+exports.syncDBStorage = functions.storage.object().onChange(event => {
     const object = event.data
     const filePath = object.name; // File path in the bucket.
     const resourceState = object.resourceState; // The resourceState is 'exists' or 'not_exists' (for file/folder deletions).
