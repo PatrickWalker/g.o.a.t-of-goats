@@ -14,7 +14,7 @@ const ref = admin.database().ref()
 exports.createUserAccount = functions.auth.user().onCreate(event => {
     const uid = event.data.uid
     const email = event.data.email
-    const newUserRef = ref.child('/users/${uid}')
+    const newUserRef = ref.child(`/users/${uid}`)
     return newUserRef.set({
         email: email
     })
@@ -23,7 +23,7 @@ exports.createUserAccount = functions.auth.user().onCreate(event => {
 exports.cleanupUser = functions.auth.user().onDelete(event => {
     const uid = event.data.uid
     const email = event.data.email
-    const UserRef = ref.child('/users/${uid}')
+    const UserRef = ref.child(`/users/${uid}`)
     return newUserRef.update({
         deleted: true
     })
@@ -52,7 +52,7 @@ exports.syncDBStorage = functions.storage.object().onChange(event => {
     //We also really want the download URL as well so we should create a storage ref and grab it
     var downUrl = storage.ref(filePath).getDownloadURL()
     
-    const imageRef = ref.child('/goats/${ImageID}')
+    const imageRef = ref.child(`/goats/${ImageID}`)
     return imageRef.update({
         downloadUrl: downUrl,
         filePath: filePath
