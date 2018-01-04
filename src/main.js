@@ -3,9 +3,12 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import './firebase'
+import './firebase-init'
 import VueFire from 'vuefire'
 
+Vue.component('nav-bar', {
+  template: `<div><router-link v-bind:to="'/Home'">Home</router-link> <router-link v-bind:to="'/Upload'">Upload</router-link></div>`
+})
 Vue.config.productionTip = false
 Vue.use(VueFire)
 

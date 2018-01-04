@@ -9,7 +9,7 @@ export default {
   name: 'auth',
   mounted () {
     var uiConfig = {
-      signInSuccessUrl: '/home',
+      signInSuccessUrl: '/Home',
       signInOptions: [
         firebase.auth.GoogleAuthProvider.PROVIDER_ID
       ]

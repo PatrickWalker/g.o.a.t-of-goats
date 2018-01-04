@@ -24,7 +24,7 @@ exports.cleanupUser = functions.auth.user().onDelete(event => {
     const uid = event.data.uid
     const email = event.data.email
     const UserRef = ref.child(`/users/${uid}`)
-    return newUserRef.update({
+    return UserRef.update({
         deleted: true
     })
 })
@@ -37,15 +37,15 @@ exports.syncDBStorage = functions.storage.object().onChange(event => {
     const metaData = object.metadata
     // Exit if this is a move or deletion event.
     if (resourceState === 'not_exists') {
-    console.log('This is a deletion event.');
-    return;
+    console.log('This is a deletion event.')
+    return true
     }
 
     // Exit if file exists but is not new and is only being triggered
     // because of a metadata change.
     if (resourceState === 'exists' && metageneration > 1) {
-    console.log('This is a metadata change event.');
-    return;
+    console.log('This is a metadata change event.')
+    return true
     }
     //Ok at this point we know it's a creation event and we have metadata so we should pull our custom ID 
     var ImageID = metaData['customMetadata']['ID']

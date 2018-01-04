@@ -1,6 +1,7 @@
 <template>
 
   <div>
+    <nav-bar></nav-bar>
     <div>
       <label for="ImageTitle">Title : </label>
       <input v-model="Title" id="ImageTitle" placeholder="Please give it a title">
@@ -17,7 +18,7 @@
 </template>
 
 <script>
-import { storage, db } from '../firebase'
+import { storage, db } from '../firebase-init'
 // import { EventBus } from '../eventbus'
 
 export default {

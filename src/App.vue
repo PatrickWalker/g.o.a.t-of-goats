@@ -1,8 +1,6 @@
 <template>
   <div id="app">
-    <router-link v-bind:to="'/'">Home</router-link>
-    <router-link v-bind:to="'/Upload'">Upload</router-link>
-    <router-view/>
+     <router-view/>
   </div>
 </template>
 

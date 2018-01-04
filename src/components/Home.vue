@@ -1,6 +1,6 @@
 <template>
-
   <div>
+     <nav-bar></nav-bar>
      <img :src="imageSrc">
   </div>
 

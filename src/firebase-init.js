@@ -8,7 +8,8 @@ const fbconfig = {
   storageBucket: 'gdgbelfast-cb650.appspot.com',
   messagingSenderId: '431499896844'
 }
-const firebaseApp = Firebase.initializeApp(fbconfig)
+export const firebaseApp = Firebase.initializeApp(fbconfig)
 
 export const storage = firebaseApp.storage()
 export const db = firebaseApp.database()
+export const auth = firebaseApp.auth()
