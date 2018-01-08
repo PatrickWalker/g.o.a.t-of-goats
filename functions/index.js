@@ -36,6 +36,7 @@ exports.syncDBStorage = functions.storage.object().onChange(event => {
     const metageneration = object.metageneration; // Number of times metadata has been generated. New objects have a value of 1.
     const metaData = object.metadata
     // Exit if this is a move or deletion event.
+    var ImageID = metaData['ID']
     if (resourceState === 'not_exists') {
     console.log('This is a deletion event.')
     return true
@@ -48,9 +49,8 @@ exports.syncDBStorage = functions.storage.object().onChange(event => {
     return true
     }
     //Ok at this point we know it's a creation event and we have metadata so we should pull our custom ID 
-    var ImageID = metaData['customMetadata']['ID']
     //We also really want the download URL as well so we should create a storage ref and grab it
-    var downUrl = storage.ref(filePath).getDownloadURL()
+    var downUrl = admin.storage().ref(filePath).getDownloadURL()
     
     const imageRef = ref.child(`/goats/${ImageID}`)
     return imageRef.update({

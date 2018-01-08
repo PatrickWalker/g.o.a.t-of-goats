@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import FileUploader from '@/components/FileUploader'
 import Home from '@/components/Home'
 import Login from '@/components/Login'
+import GoatRater from '@/components/GoatRater'
 import {auth} from '../firebase-init'
 
 Vue.use(Router)
@@ -21,6 +22,14 @@ let router = new Router({
       path: '/Upload',
       name: 'FileUploader',
       component: FileUploader,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/Rate',
+      name: 'GoatRater',
+      component: GoatRater,
       meta: {
         requiresAuth: true
       }

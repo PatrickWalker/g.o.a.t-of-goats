@@ -5,9 +5,13 @@ import App from './App'
 import router from './router'
 import './firebase-init'
 import VueFire from 'vuefire'
+var StarRating = require('vue-star-rating')
+
+Vue.component('star-rating', StarRating)
 
 Vue.component('nav-bar', {
-  template: `<div><router-link v-bind:to="'/Home'">Home</router-link> <router-link v-bind:to="'/Upload'">Upload</router-link></div>`
+  template: `<div><router-link v-bind:to="'/Home'">Home</router-link> <router-link v-bind:to="'/Upload'">Upload</router-link>
+    <router-link v-bind:to="'/Rate'">Rate Some Goats</router-link></div>`
 })
 Vue.config.productionTip = false
 Vue.use(VueFire)
