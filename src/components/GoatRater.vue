@@ -52,7 +52,7 @@ export default {
   },
   methods: {
     setRating: function (rating) {
-      db.ref('goats/' + this.$data.imageID + '/ratings').put({
+      db.ref('goats/' + this.$data.imageID + '/ratings').push({
         score: rating,
         rater: {
           name: auth.currentUser.displayName,
