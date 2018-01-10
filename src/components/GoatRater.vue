@@ -3,35 +3,31 @@
   <div>
     <nav-bar></nav-bar>
     <div>
-        // Title
-        
-        // Image to rate
-        
-        //Metadata about the Image 
-        
-        //Star Rating to give
+        <h2>{{ title }}</h2>
+        <img :src="imageSrc">
         <star-rating inactive-color="#000" 
              active-color="#f00" 
-             v-bind:star-size="90" @rating-selected ="setRating" ></star-rating>
-        //Current Star Rating Potentially
+             v-bind:star-size="60" @rating-selected ="setRating" ></star-rating>
     </div>
   </div>
 
 </template>
 
 <script>
-import { storage, db } from '../firebase-init'
+import { auth, storage, db } from '../firebase-init'
 import StarRating from 'vue-star-rating'
 export default {
   name: 'GoatRater',
   data () {
     return {
       imageID: '',
-      rating: 0
+      imageSrc: '',
+      avgRating: 0,
+      title: ''
     }
   },
   created: function () {
-    var targetImg = ''
+    var that = this
     db.ref('goats').orderByChild('id').once('value').then((snapshot) => {
       // Rather than a ForEach lets just get the length and then random number the index?
       var goatCount = snapshot.numChildren()
@@ -40,24 +36,29 @@ export default {
       var index = 0
       snapshot.forEach(function (childSnapshot) {
         if (index === randomGoat) {
-          targetImg = childSnapshot.val().id
+          that.$data.imageID = childSnapshot.key
+          that.$data.title = childSnapshot.val().Title
         }
-        console.log('checking this')
-        console.log(this)
-        console.log(targetImg)
         index++
       })
+      let sref = storage.ref('goats/' + that.$data.imageID)
+      sref.getDownloadURL().then(function (url) {
+        that.$data.imageSrc = url
+      })
     })
-    console.log(targetImg)
-    let sref = storage.ref('goats/Auth.png')
-    console.log(sref)
   },
   components: {
     StarRating
   },
   methods: {
     setRating: function (rating) {
-      this.rating = rating
+      db.ref('goats/' + this.$data.imageID + '/ratings').put({
+        score: rating,
+        rater: {
+          name: auth.currentUser.displayName,
+          id: auth.currentUser.uid
+        }
+      })
     }
   }
 }
