@@ -26,12 +26,29 @@ export default {
   name: 'GoatRater',
   data () {
     return {
+      imageID: '',
       rating: 0
     }
   },
   created: function () {
-    let dbgoat = db.ref('goats')
-    console.log(dbgoat)
+    var targetImg = ''
+    db.ref('goats').orderByChild('id').once('value').then((snapshot) => {
+      // Rather than a ForEach lets just get the length and then random number the index?
+      var goatCount = snapshot.numChildren()
+      console.log(snapshot.numChildren())
+      var randomGoat = Math.floor(Math.random() * goatCount)
+      var index = 0
+      snapshot.forEach(function (childSnapshot) {
+        if (index === randomGoat) {
+          targetImg = childSnapshot.val().id
+        }
+        console.log('checking this')
+        console.log(this)
+        console.log(targetImg)
+        index++
+      })
+    })
+    console.log(targetImg)
     let sref = storage.ref('goats/Auth.png')
     console.log(sref)
   },

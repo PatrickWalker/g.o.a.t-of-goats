@@ -42,7 +42,7 @@ export default {
         alert('You need a Title. We said Please!')
         return
       }
-      var uploaderName = auth.currentUser().displayName
+      var uploaderName = auth.currentUser.displayName
       var imageID = this.saveFileDetails(this.$data.Title, uploaderName)
       var upFile = this.$data.stagedFiles[0]
       var metadata = {
@@ -74,7 +74,7 @@ export default {
       })
     },
     upload (file, meta) {
-      this.uploadTask = storage.ref('goats/' + file.name).put(file, meta)
+      this.uploadTask = storage.ref('goats/' + meta.customMetadata.ID).put(file, meta)
       this.uploadTask.then(snapshot => {
         this.downloadURL = this.uploadTask.snapshot.downloadURL
         // need to work this emit bit out as this is useful info to have
