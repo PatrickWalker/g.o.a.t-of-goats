@@ -84,10 +84,16 @@ export default {
       })
     }
   },
+  resetForm () {
+    this.$data.uploadDisabled = true
+  },
   watch: {
     uploadTask: function () {
       this.uploadTask.on('state_changed', sp => {
         this.progressUpload = Math.floor(sp.bytesTransferred / sp.totalBytes * 100)
+        if (this.progressUpload === 100) {
+          this.resetForm()
+        }
       })
     }
   }
