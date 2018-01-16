@@ -1,7 +1,9 @@
 <template>
   <div>
      <nav-bar></nav-bar>
+     <div class="mainView">
      <img :src="imageSrc">
+     </div>
   </div>
 
 </template>

@@ -2,6 +2,7 @@
 
   <div>
     <nav-bar></nav-bar>
+    <div class="mainView">
     <div>
       <label for="ImageTitle">Title : </label>
       <input v-model="Title" id="ImageTitle" placeholder="Please give it a title">
@@ -10,9 +11,10 @@
     <input type="file" id="goatFile" :disabled="uploadDisabled" accept="image/*" @change="stageFiles($event.target.files)">
     </div>
     <div>
-    <button v-on:click="uploadYoGoat()">Push the Goat Out</button>
+     <v-btn round color="blue" large v-on:click="uploadYoGoat()">Push the Goat Out</v-btn>
     </div>
     <div class="progress-bar" :style="{ width: progressUpload + '%'}">{{ progressUpload }}%</div>
+    </div>
   </div>
 
 </template>

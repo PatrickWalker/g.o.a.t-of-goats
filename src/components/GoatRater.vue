@@ -2,15 +2,21 @@
 
   <div>
     <nav-bar></nav-bar>
-    <div style="wdisplay: block;
-    margin-left: auto;
-    margin-right: auto">
+    <div class="mainView">
+     <v-container fluid class="text-xs-center">
         <h2>{{ title }}</h2>
-        <img :src="imageSrc">
-        <star-rating inactive-color="#000" 
+        <img class="goat" :src="imageSrc">
+        <star-rating style="display:block" inactive-color="#000" 
              active-color="#f00" 
              v-bind:star-size="60" @rating-selected ="setRating"  />
-        <button v-on:click="showGoat">Get Mor Goats</button>      
+             <v-card flat>
+            <v-card-text>
+              <div>
+                <v-btn round color="blue" large v-on:click="showGoat">Get Mor Goats</v-btn>
+              </div>
+            </v-card-text>
+          </v-card>  
+    </v-container>
     </div>
   </div>
 
@@ -69,3 +75,5 @@ export default {
   }
 }
 </script>
+
+
