@@ -7,7 +7,7 @@
         <h2>{{ title }}</h2>
         <img class="goat" :src="imageSrc">
         <star-rating style="display:block" inactive-color="#000" 
-             active-color="#f00" 
+             active-color="#f00" id="starrating"
              v-bind:star-size="60" :read-only="rated" :rating="initRating" @rating-selected ="setRating"  />
         <v-card flat>
           <v-card-text>

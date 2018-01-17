@@ -19,4 +19,7 @@ export default {
     max-width: 60%;
     height: 60%;
 }
+.vue-star-rating {
+  display: block !important;
+}
 </style>
